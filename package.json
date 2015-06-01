@@ -1,19 +1,19 @@
 {
-    "name":             "inlet",
+    "name":             "semblance",
     "version":          "0.2.1",
     "author":           "Alan Gutierrez <alan@prettyrobots.com>",
-    "description":      "A micro-framework for HTTP end points.",
+    "description":      "A mock HTTP server.",
     "keywords":
     [
                         "http", "https", "rest", "json", "curl"
     ],
     "contributors":     [],
-    "homepage":         "https://github.com/bigeasy/inlet",
-    "bugs":             "https://github.com/bigeasy/inlet/issues",
+    "homepage":         "https://github.com/bigeasy/semblance",
+    "bugs":             "https://github.com/bigeasy/semblance/issues",
     "repository":
     {
                         "type": "git",
-                        "url": "http://github.com/bigeasy/inlet.git"
+                        "url": "http://github.com/bigeasy/semblance.git"
     },
     "dependencies":
     {

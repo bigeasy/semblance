@@ -1,0 +1,17 @@
+Semblance
+
+A mock HTTP server.
+
+    Discussion:     http://bigeasy.github.io/semblance/issues/1
+
+    Documentation:  http://bigeasy.github.io/semblance
+    Source:         http://github.io/bigeasy/semblance
+    Issues:         http://github.com/bigeasy/semblance/issues
+
+    Install:        `npm install semblance`
+
+    License:        MIT
+
+To learn everything you want to know about Semblance start here:
+
+    http://bigeasy.github.io/semblance
