@@ -1,6 +1,5 @@
 var connect = require('connect'),
     url = require('url'),
-    Binder = require('../net/binder'),
     bodyParser = require('body-parser'),
     getRawBody = require('raw-body'),
     typer = require('media-typer'),
