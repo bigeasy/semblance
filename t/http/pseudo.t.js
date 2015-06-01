@@ -8,10 +8,11 @@ function prove (async, assert) {
         Bouquet = require('../../net/bouquet'),
         pems = require('../../http/pems')
     var pseudo = new Pseudo(new Binder('https://127.0.0.1:8080', pems)),
-        bouquet = new Bouquet,
         ua = new UserAgent
+    var http = require('https')
+    var server = http.createServer(pems, pseudo.dispatch())
     async(function () {
-        bouquet.start(pseudo, async())
+        server.listen(8080, '127.0.0.1', async())
     }, function () {
         ua.fetch(pseudo.binder, {
             url: '/test',
@@ -23,6 +24,6 @@ function prove (async, assert) {
     }, function (body, response) {
         assert(response.statusCode, 413, 'errored')
     }, function () {
-        bouquet.stop(async())
+        server.close(async())
     })
 }
