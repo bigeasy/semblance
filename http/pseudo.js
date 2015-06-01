@@ -6,9 +6,7 @@ var connect = require('connect'),
     errorHandler = require('errorhandler'),
     assert = require('assert')
 
-function Psuedo (binder) {
-    assert(binder, 'binder is required')
-    this.binder = binder
+function Psuedo () {
     this._responses = []
     this._received = []
 }

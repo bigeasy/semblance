@@ -5,10 +5,8 @@ require('cadence/ee')
 function prove (async, assert) {
     var stream = require('stream')
     var Pseudo = require('../../http/pseudo'),
-        Binder = require('../../net/binder'),
-        Bouquet = require('../../net/bouquet'),
         pems = require('../../http/pems')
-    var pseudo = new Pseudo(new Binder('https://127.0.0.1:8080', pems))
+    var pseudo = new Pseudo
     var http = require('https')
     var server = http.createServer(pems, pseudo.dispatch()), request
     async(function () {
