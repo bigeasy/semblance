@@ -4,7 +4,7 @@ require('cadence/ee')
 
 function prove (async, assert) {
     var stream = require('stream')
-    var Pseudo = require('../../http/pseudo'),
+    var Pseudo = require('../..'),
         pems = require('../../http/pems')
     var pseudo = new Pseudo
     var http = require('https')

@@ -7,6 +7,7 @@
     [
                         "http", "https", "rest", "json", "curl"
     ],
+    "main":             "semblance",
     "contributors":     [],
     "homepage":         "https://github.com/bigeasy/semblance",
     "bugs":             "https://github.com/bigeasy/semblance/issues",
