@@ -3,10 +3,10 @@ require('proof')(1, require('cadence/redux')(prove))
 require('cadence/ee')
 
 function prove (async, assert) {
-    var Pseudo = require('../..')
-    var pseudo = new Pseudo
+    var Semblance = require('../..')
+    var semblance = new Semblance
     var http = require('http')
-    var server = http.createServer(pseudo.dispatch()), request
+    var server = http.createServer(semblance.dispatch()), request
     async(function () {
         server.listen(8080, '127.0.0.1', async())
     }, function () {

@@ -6,12 +6,12 @@ var connect = require('connect'),
     errorHandler = require('errorhandler'),
     assert = require('assert')
 
-function Psuedo () {
+function Semblance () {
     this._responses = []
     this._received = []
 }
 
-Psuedo.prototype.dispatch = function () {
+Semblance.prototype.dispatch = function () {
     return connect()
         .use(bodyParser.json())
         .use(function (req, res, next) {
@@ -62,16 +62,16 @@ Psuedo.prototype.dispatch = function () {
         .use(errorHandler())
 }
 
-Psuedo.prototype.push = function (response) {
+Semblance.prototype.push = function (response) {
     this._responses.push(response)
 }
 
-Psuedo.prototype.shift = function () {
+Semblance.prototype.shift = function () {
     return this._received.shift()
 }
 
-Psuedo.prototype.clear = function () {
+Semblance.prototype.clear = function () {
     this._received.length = 0
 }
 
-module.exports = Psuedo
+module.exports = Semblance
