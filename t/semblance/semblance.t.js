@@ -20,7 +20,7 @@ function prove (async, assert) {
                 'content-type': 'text/plain'
             }
         })
-        request.end(new Buffer(1024 * 1024 * 4))
+        request.end(new Buffer(1024 * 1024 + 1))
         async.ee(request).end('response').error()
     }, function (response) {
         assert(response.statusCode, 413, 'errored')
