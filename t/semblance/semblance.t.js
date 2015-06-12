@@ -7,6 +7,7 @@ function prove (async, assert) {
     var semblance = new Semblance
     var http = require('http')
     var server = http.createServer(semblance.dispatch()), request
+    var connection = process.version.split('.')[1] >= 12 ? 'close' : 'keep-alive'
     async(function () {
         server.listen(8080, '127.0.0.1', async())
     }, function () {
@@ -42,7 +43,7 @@ function prove (async, assert) {
             headers: {
                 'content-type': 'text/plain',
                 host: '127.0.0.1:8080',
-                connection: 'keep-alive',
+                connection: connection,
                 'transfer-encoding': 'chunked'
             },
             url: '/test',
@@ -69,7 +70,7 @@ function prove (async, assert) {
                 method: 'POST',
                 headers: {
                     host: '127.0.0.1:8080',
-                    connection: 'keep-alive',
+                    connection: connection,
                     'transfer-encoding': 'chunked'
                 },
                 url: '/test',
@@ -101,7 +102,7 @@ function prove (async, assert) {
                 headers: {
                     'content-type': 'application/json',
                     host: '127.0.0.1:8080',
-                    connection: 'keep-alive',
+                    connection: connection,
                     'transfer-encoding': 'chunked'
                 },
                 url: '/test',
