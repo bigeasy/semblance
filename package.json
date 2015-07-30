@@ -21,7 +21,7 @@
     {
                         "media-typer":          "0.3.0",
                         "raw-body":             "1.2.2",
-                        "connect":              "3.0.1",
+                        "connect":              "3.4.0",
                         "body-parser":          "1.4.3"
     },
     "devDependencies":
