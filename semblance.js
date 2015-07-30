@@ -3,7 +3,6 @@ var connect = require('connect'),
     bodyParser = require('body-parser'),
     getRawBody = require('raw-body'),
     typer = require('media-typer'),
-    errorHandler = require('errorhandler'),
     assert = require('assert')
 
 function Semblance () {
@@ -59,7 +58,6 @@ Semblance.prototype.dispatch = function () {
                 response.end(data.payload)
             }, data.delay || 0)
         }.bind(this))
-        .use(errorHandler())
 }
 
 Semblance.prototype.push = function (response) {

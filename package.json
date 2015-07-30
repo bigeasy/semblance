@@ -22,7 +22,6 @@
                         "raw-body":             "1.2.2",
                         "cadence":              "0.0.53",
                         "connect":              "3.0.1",
-                        "errorhandler":         "1.1.1",
                         "body-parser":          "1.4.3"
     },
     "devDependencies":
