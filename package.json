@@ -11,6 +11,7 @@
     "contributors":     [],
     "homepage":         "https://github.com/bigeasy/semblance",
     "bugs":             "https://github.com/bigeasy/semblance/issues",
+    "license":          "MIT",
     "repository":
     {
                         "type": "git",
