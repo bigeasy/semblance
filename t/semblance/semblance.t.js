@@ -1,6 +1,4 @@
-require('proof')(11, require('cadence/redux')(prove))
-
-require('cadence/ee')
+require('proof')(11, require('cadence')(prove))
 
 function prove (async, assert) {
     var Semblance = require('../..')

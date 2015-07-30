@@ -21,12 +21,12 @@
     {
                         "media-typer":          "0.3.0",
                         "raw-body":             "1.2.2",
-                        "cadence":              "0.0.53",
                         "connect":              "3.0.1",
                         "body-parser":          "1.4.3"
     },
     "devDependencies":
     {
+                        "cadence":              "0.2.3",
                         "proof":                "0.0.51"
     },
     "scripts":
