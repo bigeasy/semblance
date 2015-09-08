@@ -48,10 +48,10 @@ Semblance.prototype.dispatch = function () {
             data.statusCode || (data.statusCode = 200)
             data.headers || (data.headers = { 'content-type': 'application/json' })
             data.payload || (data.payload = { 'message': 'Hello, World!' })
-            if (data.headers['content-type'] == 'application/json') {
+            if (data.headers['content-type'] == 'application/json' && !Buffer.isBuffer(data.payload)) {
                 data.payload = JSON.stringify(data.payload) + '\n'
             }
-            var buffer = new Buffer(data.payload)
+            var buffer = Buffer.isBuffer(data.payload) ? data.payload : new Buffer(data.payload)
             data.headers['content-length'] = buffer.length
             setTimeout(function () {
                 response.writeHeader(data.statusCode, data.headers)
