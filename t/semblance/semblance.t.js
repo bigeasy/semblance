@@ -1,6 +1,7 @@
 require('proof')(11, require('cadence')(prove))
 
 function prove (async, assert) {
+    var Delta = require('delta')
     var Semblance = require('../..')
     var semblance = new Semblance
     var http = require('http')
@@ -19,7 +20,7 @@ function prove (async, assert) {
             }
         })
         request.end(new Buffer(1024 * 1024 + 1))
-        async.ee(request).end('response').error()
+        new Delta(async()).ee(request).on('response')
     }, function (response) {
         assert(response.statusCode, 413, 'errored')
         request.abort() // <- why?
@@ -33,7 +34,7 @@ function prove (async, assert) {
             }
         })
         request.end('hello, world')
-        async.ee(request).end('response').error()
+        new Delta(async()).ee(request).on('response')
     }, function (response) {
         assert(response.statusCode, 200, 'ok')
         assert(semblance.shift(), {
@@ -56,12 +57,12 @@ function prove (async, assert) {
             method: 'POST'
         })
         request.end('hello, world')
-        async.ee(request).end('response').error()
+        new Delta(async()).ee(request).on('response')
     }, function (response) {
         async(function () {
-            async.ee(response).on('data', function (chunk) {
+            new Delta(async()).ee(response).on('data', function (chunk) {
                 assert(chunk.toString(), 'x', 'set payload')
-            }).end('end').error()
+            }).on('end')
         }, function () {
             assert(response.statusCode, 200, 'ok')
             assert(semblance.shift(), {
@@ -87,12 +88,12 @@ function prove (async, assert) {
             }
         })
         request.end(JSON.stringify({ key: 'value' }))
-        async.ee(request).end('response').error()
+        new Delta(async()).ee(request).on('response')
     }, function (response) {
         async(function () {
-            async.ee(response).on('data', function (chunk) {
+            new Delta(async()).ee(response).on('data', function (chunk) {
                 assert(chunk.toString(), '{"message":"Hello, World!"}\n', 'set payload')
-            }).end('end').error()
+            }).on('end')
         }, function () {
             assert(response.statusCode, 200, 'ok')
             assert(semblance.shift(), {
@@ -120,7 +121,7 @@ function prove (async, assert) {
             }
         })
         request.end(JSON.stringify({ key: 'value' }))
-        async.ee(request).end('response').error()
+        new Delta(async()).ee(request).on('response')
     }, function (response) {
         request.abort()
         assert(semblance._received.length, 1, 'uncleared')
