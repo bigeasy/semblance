@@ -27,7 +27,7 @@
     "devDependencies":
     {
                         "delta":                "1.0.x",
-                        "cadence":              "0.4.0",
+                        "cadence":              "1.0.x",
                         "proof":                "0.0.54"
     },
     "scripts":
