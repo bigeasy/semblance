@@ -1,4 +1,4 @@
-require('proof')(11, require('cadence')(prove))
+require('proof')(13, require('cadence')(prove))
 
 function prove (async, assert) {
     var Delta = require('delta')
@@ -37,14 +37,10 @@ function prove (async, assert) {
         new Delta(async()).ee(request).on('response')
     }, function (response) {
         assert(response.statusCode, 200, 'ok')
-        assert(semblance.shift(), {
+        var received = semblance.shift()
+        delete received.headers
+        assert(received, {
             method: 'POST',
-            headers: {
-                'content-type': 'text/plain',
-                host: '127.0.0.1:8080',
-                connection: connection,
-                'transfer-encoding': 'chunked'
-            },
             url: '/test',
             body: 'hello, world'
         }, 'plain text')
@@ -65,16 +61,14 @@ function prove (async, assert) {
             }).on('end')
         }, function () {
             assert(response.statusCode, 200, 'ok')
-            assert(semblance.shift(), {
+            var received = semblance.shift()
+            assert(!('content-type' in received.headers), 'no mime type')
+            delete received.headers
+            assert(received, {
                 method: 'POST',
-                headers: {
-                    host: '127.0.0.1:8080',
-                    connection: connection,
-                    'transfer-encoding': 'chunked'
-                },
                 url: '/test',
                 body: {}
-            }, 'no mime type')
+            }, 'no mime type received')
             request.abort()
         })
     }, function () {
@@ -96,17 +90,14 @@ function prove (async, assert) {
             }).on('end')
         }, function () {
             assert(response.statusCode, 200, 'ok')
-            assert(semblance.shift(), {
+            var received = semblance.shift()
+            assert(received.headers['content-type'], 'application/json', 'mime type')
+            delete received.headers
+            assert(received, {
                 method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                    host: '127.0.0.1:8080',
-                    connection: connection,
-                    'transfer-encoding': 'chunked'
-                },
                 url: '/test',
                 body: { key: 'value' }
-            }, 'no mime type')
+            }, 'mime type received')
             request.abort()
         })
     }, function () {
