@@ -20,7 +20,7 @@
     "dependencies":
     {
                         "media-typer":          "0.3.0",
-                        "raw-body":             "2.1.2",
+                        "raw-body":             "2.1.5",
                         "connect":              "3.4.0",
                         "body-parser":          "1.14.2"
     },
