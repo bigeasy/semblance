@@ -28,7 +28,7 @@
     {
                         "delta":                "1.0.x",
                         "cadence":              "1.0.x",
-                        "proof":                "1.0.x"
+                        "proof":                "1.x"
     },
     "scripts":
     {
