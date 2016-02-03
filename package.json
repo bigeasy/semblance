@@ -26,7 +26,7 @@
     },
     "devDependencies":
     {
-                        "delta":                "1.0.x",
+                        "delta":                "1.x",
                         "cadence":              "1.x",
                         "proof":                "1.x"
     },
