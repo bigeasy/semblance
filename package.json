@@ -19,15 +19,15 @@
     },
     "dependencies":
     {
-                        "media-typer":          "0.3.0",
-                        "raw-body":             "2.1.5",
+                        "body-parser":          "1.14.2",
                         "connect":              "3.4.0",
-                        "body-parser":          "1.14.2"
+                        "media-typer":          "0.3.0",
+                        "raw-body":             "2.1.5"
     },
     "devDependencies":
     {
-                        "delta":                "1.x",
                         "cadence":              "1.x",
+                        "delta":                "1.x",
                         "proof":                "1.x"
     },
     "scripts":
