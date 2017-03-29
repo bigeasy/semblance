@@ -1,37 +1,40 @@
 {
-    "name":             "semblance",
-    "version":          "1.0.1",
-    "author":           "Alan Gutierrez <alan@prettyrobots.com>",
-    "description":      "A mock HTTP server.",
+    "name":                 "semblance",
+    "version":              "1.0.1",
+    "description":
+
+      "A mock HTTP server.",
+
     "keywords":
     [
-                        "http", "https", "rest", "json", "curl"
+                            "http", "https", "rest", "json", "curl"
     ],
-    "main":             "semblance",
-    "contributors":     [],
-    "homepage":         "https://github.com/bigeasy/semblance",
-    "bugs":             "https://github.com/bigeasy/semblance/issues",
-    "license":          "MIT",
+    "author":               "Alan Gutierrez <alan@prettyrobots.com>",
+    "contributors":         [],
+    "homepage":             "https://github.com/bigeasy/semblance",
+    "bugs":                 "https://github.com/bigeasy/semblance/issues",
+    "license":              "MIT",
     "repository":
     {
-                        "type": "git",
-                        "url": "http://github.com/bigeasy/semblance.git"
+                            "type": "git",
+                            "url": "http://github.com/bigeasy/semblance.git"
     },
     "dependencies":
     {
-                        "body-parser":          "1.17.1",
-                        "connect":              "3.6.0",
-                        "media-typer":          "0.3.0",
-                        "raw-body":             "2.2.0"
+                            "body-parser":                  "1.17.1",
+                            "connect":                      "3.6.0",
+                            "media-typer":                  "0.3.0",
+                            "raw-body":                     "2.2.0"
     },
     "devDependencies":
     {
-                        "cadence":              "1.x",
-                        "delta":                "1.x",
-                        "proof":                "1.x"
+                            "cadence":                      "1.0.x",
+                            "delta":                        "1.2.x",
+                            "proof":                        "1.2.x"
     },
+    "main":                 "semblance",
     "scripts":
     {
-                        "test": "proof platform win32 && proof test */*/*.t.js || t/test"
+                            "test": "proof platform win32 && proof test */*/*.t.js || t/test"
     }
 }
