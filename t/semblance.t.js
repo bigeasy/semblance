@@ -2,7 +2,7 @@ require('proof')(13, require('cadence')(prove))
 
 function prove (async, assert) {
     var Delta = require('delta')
-    var Semblance = require('../..')
+    var Semblance = require('..')
     var semblance = new Semblance
     var http = require('http')
     var server = http.createServer(semblance.dispatch()), request
