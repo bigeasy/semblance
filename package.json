@@ -30,7 +30,7 @@
     {
                             "cadence":                      "1.0.x",
                             "delta":                        "1.2.x",
-                            "proof":                        "1.2.x"
+                            "proof":                        "3.0.x"
     },
     "main":                 "semblance",
     "scripts":
