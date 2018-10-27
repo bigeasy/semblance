@@ -23,7 +23,7 @@
     {
                             "body-parser":                  "1.18.2",
                             "connect":                      "3.6.5",
-                            "media-typer":                  "0.3.0",
+                            "content-type":                 "1.0.4",
                             "raw-body":                     "2.3.2"
     },
     "devDependencies":

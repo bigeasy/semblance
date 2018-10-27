@@ -2,7 +2,7 @@ var connect = require('connect'),
     url = require('url'),
     bodyParser = require('body-parser'),
     getRawBody = require('raw-body'),
-    typer = require('media-typer'),
+    typer = require('content-type'),
     assert = require('assert')
 
 function Semblance () {
@@ -16,7 +16,7 @@ Semblance.prototype.dispatch = function () {
         .use(function (req, res, next) {
             if (!req.headers['content-type']) return next()
             var type = typer.parse(req.headers['content-type'])
-            if (type.type + '/' + type.subtype != 'application/json') {
+            if (type.type != 'application/json') {
                 getRawBody(req, {
                     length: req.headers['content-length'],
                     limit: '1mb',
