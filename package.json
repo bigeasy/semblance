@@ -29,7 +29,7 @@
     "devDependencies":
     {
                             "cadence":                      "1.0.x",
-                            "delta":                        "1.2.x",
+                            "delta":                        "1.4.x",
                             "proof":                        "3.0.x"
     },
     "main":                 "semblance",
