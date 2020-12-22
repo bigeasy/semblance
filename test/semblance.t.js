@@ -1,6 +1,6 @@
 'use strict'
 
-require('proof')(16, okay => {
+require('proof')(20, okay => {
     const semblance = require('..')
     //
 
@@ -18,7 +18,7 @@ require('proof')(16, okay => {
     }, {
         state: 'MI'
     }), 'multiple patterns must all match')
-    okay(semblance({ city: 'Traverse City', state: 'MI' }, { state: 'LA' }), 'failed pattern match')
+    okay(!semblance({ city: 'Traverse City', state: 'MI' }, { state: 'LA' }), 'failed pattern match')
     //
 
     // Semblance can match primitives as well as objects.
@@ -38,17 +38,6 @@ require('proof')(16, okay => {
     //
     okay(semblance(1, 1), 'numbers')
     //
-
-    // Semblance can match boxed primitives.
-
-    //
-    okay(semblance(new Number(1), 1), 'boxed primitive')
-    //
-
-    // Semblance can use boxed primitives as patterns.
-
-    //
-    okay(semblance(1, new Number(1)), 'boxed primitive pattern')
 
     okay(semblance({}, {}), 'empty objects')
     okay(semblance({ code: 'ENOENT' }, {}), 'empty object as subset')
