@@ -21,20 +21,14 @@
     },
     "dependencies":
     {
-                            "body-parser":                  "1.18.3",
-                            "connect":                      "3.6.6",
-                            "content-type":                 "1.0.4",
-                            "raw-body":                     "2.3.3"
     },
     "devDependencies":
     {
-                            "cadence":                      "1.0.x",
-                            "delta":                        "1.4.x",
-                            "proof":                        "3.0.x"
+                            "proof":                        "^9.0.2"
     },
     "main":                 "semblance",
     "scripts":
     {
-                            "test": "proof platform win32 && proof test */*.t.js || t/test"
+                            "test": "proof test/*.t.js"
     }
 }

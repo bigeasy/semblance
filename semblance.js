@@ -1,75 +1,73 @@
-var connect = require('connect'),
-    url = require('url'),
-    bodyParser = require('body-parser'),
-    getRawBody = require('raw-body'),
-    typer = require('content-type'),
-    assert = require('assert')
+'use strict'
 
-function Semblance () {
-    this._responses = []
-    this._received = []
-}
+function examine (expect, object) {
+    if (expect === object) {
+        return true
+    }
 
-Semblance.prototype.dispatch = function () {
-    return connect()
-        .use(bodyParser.json())
-        .use(function (req, res, next) {
-            if (!req.headers['content-type']) return next()
-            var type = typer.parse(req.headers['content-type'])
-            if (type.type != 'application/json') {
-                getRawBody(req, {
-                    length: req.headers['content-length'],
-                    limit: '1mb',
-                    encoding: type.parameters.charset
-                }, function (err, string) {
-                    if (err) return next(err)
-                    req.body = string.toString()
-                    next()
-                })
-            } else {
-                next()
+    if (expect.constructor === RegExp && object != null) {
+        if (object.constructor !== RegExp) {
+            return expect.test(String(object))
+        }
+    }
+
+    if (typeof expect == 'function') {
+        return expect(object)
+    }
+
+    if (expect && object && typeof expect == 'object' && typeof object == 'object') {
+        if (Array.isArray(expect)) {
+            let j = 0, J = object.length
+            for (let i = 0, I = expect.length; i < I; i++) {
+                for (;;) {
+                    if (j == J) {
+                        return false
+                    }
+                    if (examine(expect[i], object[j++])) {
+                        break
+                    }
+                }
             }
-        })
-        .use(function (request, response) {
-            var headers = {}, received
-            for (var header in request.headers) {
-                headers[header] = request.headers[header]
+            return true
+        }
+
+        if (expect.constructor === RegExp) {
+            return expect.source === object.source && expect.flags === object.flags
+        }
+
+        if (
+            expect.constructor === object.constructor &&
+            expect.valueOf !== Object.prototype.valueOf
+        ) {
+            return expect.valueOf() === object.valueOf()
+        }
+
+        const keys = Object.keys(expect)
+        for (let i = 0, I = keys.length; i < I; i++) {
+            if (!Object.prototype.hasOwnProperty.call(object, keys[i])) {
+                return false
             }
-            this._received.push(received = {
-                method: request.method,
-                headers: headers,
-                url: request.url,
-                body: request.body
-            })
-            if (this.trace) {
-                console.log(require('util').inspect(received, null, Infinity))
+        }
+
+        for (let i = 0, I = keys.length; i < I; i++) {
+            const key = keys[i]
+
+            if (!examine(expect[key], object[key])) {
+                return false
             }
-            var data = this._responses.shift() || {}
-            data.statusCode || (data.statusCode = 200)
-            data.headers || (data.headers = { 'content-type': 'application/json' })
-            data.payload || (data.payload = { 'message': 'Hello, World!' })
-            if (data.headers['content-type'] == 'application/json' && !Buffer.isBuffer(data.payload)) {
-                data.payload = JSON.stringify(data.payload) + '\n'
-            }
-            var buffer = Buffer.isBuffer(data.payload) ? data.payload : new Buffer(data.payload)
-            data.headers['content-length'] = buffer.length
-            setTimeout(function () {
-                response.writeHeader(data.statusCode, data.headers)
-                response.end(data.payload)
-            }, data.delay || 0)
-        }.bind(this))
+        }
+
+        return true
+    }
+
+    return expect !== expect && object !== object
 }
 
-Semblance.prototype.push = function (response) {
-    this._responses.push(response)
+module.exports = function (object, ...vargs) {
+    for (const pattern of vargs) {
+        if (!examine(pattern, object)) {
+            return false
+        }
+    }
+    return true
 }
-
-Semblance.prototype.shift = function () {
-    return this._received.shift()
-}
-
-Semblance.prototype.clear = function () {
-    this._received.length = 0
-}
-
-module.exports = Semblance
