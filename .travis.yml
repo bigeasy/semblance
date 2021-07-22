@@ -4,9 +4,9 @@ language: node_js
 
 node_js:
   - '10'
-  - '15'
-  - '14'
   - '12'
+  - '14'
+  - '16'
 
 branches:
   only:
